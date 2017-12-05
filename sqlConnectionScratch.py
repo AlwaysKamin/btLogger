@@ -1,20 +1,20 @@
-import mysql.connector
+import pymysql
 
-config = {
-    'user': 'kamin',
-    'password': 'MotO8905_8',
-    'host': 'bluetoothlogger.cxfbr8mw9rdi.us-east-2.rds.amazonaws.com',
-    'database': 'btLog',
-    'raise_on_warnings': True,
-    'use_pure': False,
-}
+# config = {
+#     'user': 'alwayskamin',
+#     'password': 'Fay89058',
+#     'host': 'db4free.net',
+#     'database': 'btlogger',
+#     'raise_on_warnings': True,
+#     'use_pure': False,
+# }
 
-cnx = mysql.connector.connect(**config)
-cursor = cnx.cursor()
+db = pymysql.connect(host='db4free.net', user='alwayskamin', passwd='Fay89058', db='btlogger', port=3307)
+cursor = db.cursor()
 
 query = ("SELECT * FROM Room")
 
 data = cursor.execute(query)
 for(roomID, buildingName, buildingAddress) in cursor:
     print("{}, {}, {}".format(roomID, buildingName, buildingAddress))
-cnx.close()
+db.close()
